@@ -1,11 +1,9 @@
 package discord4j.discordjson.json.gateway;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import discord4j.discordjson.Id;
-import discord4j.discordjson.json.ApplicationCommandPermissionsData;
-import java.util.List;
+import discord4j.discordjson.json.ApplicationCommandGuildPermissionsData;
 import org.immutables.value.Value;
 
 @Value.Immutable
@@ -17,14 +15,6 @@ public interface ApplicationCommandPermissionUpdate extends Dispatch {
         return ImmutableApplicationCommandPermissionUpdate.builder();
     }
 
-    @JsonProperty("id")
-    Id commandId();
-
-    @JsonProperty("application_id")
-    Id applicationId();
-
-    @JsonProperty("guild_id")
-    Id guildId();
-
-    List<ApplicationCommandPermissionsData> permissions();
+    @JsonUnwrapped
+    ApplicationCommandGuildPermissionsData data();
 }
